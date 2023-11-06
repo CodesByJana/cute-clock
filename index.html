@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pastel Time Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #FAD9E2; /* soft pastel pink background */
+    color: #555; /* soft text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  .clock {
+    background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white for the clock background */
+    border-radius: 50%; /* circular shape */
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  .time {
+    font-size: 2em;
+    color: #FF85A1; /* pastel pink text color */
+  }
+  .date {
+    font-size: 1em;
+    color: #FF85A1; /* pastel pink text color */
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="clock">
+  <div>
+    <div class="time" id="time"></div>
+    <div class="date" id="date"></div>
+  </div>
+</div>
+
+<script>
+    function updateClock() {
+      const now = new Date();
+      const hours = ('0' + now.getHours()).slice(-2);
+      const minutes = ('0' + now.getMinutes()).slice(-2);
+      const day = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('time').textContent = `${hours}:${minutes}`;
+      document.getElementById('date').textContent = day;
+    }
+    
+    // Initial call to set the clock immediately
+    updateClock();
+    
+    // Update the clock every minute to ensure accuracy
+    setInterval(updateClock, 60000);
+    </script>
+    </body>
+    </html>
+    
